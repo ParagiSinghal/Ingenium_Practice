@@ -10,3 +10,15 @@ var db = mongoose.connection;
 
 //Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+/*db.once('connect', function() {
+    console.log('asdfafdsafds');
+});*/
+console.log('connected to database');
+
+module.exports = db;
+>>>>>>> Stashed changes
