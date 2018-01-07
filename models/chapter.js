@@ -12,11 +12,11 @@ var ChapterSchema = new schema({
     }],
     subject: {
         type: mongooseId,
-        //required: true
+        required: true
     },
     class: {
         type: mongooseId,
-        //required: true
+        required: true
     }
 });
 module.exports = mongoose.model('chapter', ChapterSchema);
