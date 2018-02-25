@@ -22,9 +22,9 @@ router.get('/',function(req,res){
     console.log("Rendering index");
     res.render('index');
 });
-router.get('/signup', function() {
-    console.log("signing up");
-    res.render(signup);
-});
+// router.get('/signup', function() {
+//     console.log("signing up");
+//     res.render(signup);
+// });
 
 module.exports = router;
