@@ -11,7 +11,13 @@ exports.subject_detail = function(req,res,next){
 }
 
 exports.subject_list = function(req,res,next){
-   
+    console.log("Inside subjects list function");
+    subjects.find({},{name:1,_id:0}).then((Subjects) => {
+     res.send({Subjects});
+    }, (e) => {
+        res.status(400).send(e);
+    });
+ 
 
 };
 
@@ -29,21 +35,31 @@ exports.subject_create_post = function(req,res,next){
     });
     subject_instance.save(function(e,doc){
         if(e){
-            return console.log(e);
+            console.log("Subject saved succesfully !!");
+            res.send(e);
             //throw e;
         }
         else{
-            res.send(doc);
-            //var id = mongoose.Types.ObjectId(req.params.macro_id);
             classes.update({_id: req.params.class_id },
                 { $push :{ subjects : subject_instance._id }},function(err,result){
                 if(err){
-                    return console.log("Can't be updated !!");
+                    console.log("Can't be updated !!");
+                    subjects.deleteOne({_id : subject_instance._id},function(error,results){
+                        if(error){
+                            console.log("subject_instance could not be backtracked !!");
+                            res.send(e);
+                        }
+                        else{
+                            console.log("subject_instance succesfully deleted");
+                            res.send(results);
+                        }
+                    })
+                    //res.send(err);
                     //throw err;
-                //rollback(req.params.macro_id); 
                 }//if close
                 else{
-                console.log('Class updated succesfully !!' + result);
+                    console.log('Class updated succesfully !!')
+                    res.send(doc);
                 } //else close
             })//update close  
         } 

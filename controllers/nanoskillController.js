@@ -11,7 +11,12 @@ exports.nanoskill_detail = function(req,res,next){
 }
 
 exports.nanoskill_list = function(req,res,next){
-   
+   console.log("Inside nanoskills list function");
+   nanoskills.find({},{name:1,_id:0}).then((NanoSkills) => {
+    res.send({NanoSkills});
+   }, (e) => {
+       res.status(400).send(e);
+   });
 
 };
 
@@ -27,21 +32,37 @@ exports.nanoskill_create_post = function(req,res,next){
     });
     nanoskill_instance.save(function(e,doc){
         if(e){
-            return console.log(e);
+            console.log("Nanoskill instance not saved");
+            res.send(e);
+            //return console.log(e);
             //throw e;
         }
         else{
-            res.send(doc);
-            //var id = mongoose.Types.ObjectId(req.params.macro_id);
+            console.log("Nanoskill saved succesfully");
             macroskills.update({_id: req.params.macro_id },
                 { $push :{ nanoskills : nanoskill_instance._id }},function(err,result){
                 if(err){
-                    return console.log("Can't be updated !!");
+                    console.log(err);
+                    console.log("Can't be updated !!");
+                }
+                else if(result == null){
+                    nanoskills.deleteOne({_id : nanoskill_instance._id},function(error,results){y 
+                        if(error){
+                            //console.log("Nanoskill could not be backtracked !!");
+                            res.send("Nanoskill could not be backtracked!!");
+                        }
+                        else{
+                            console.log("Nanoskill succesfully deleted");
+                            res.send(results);
+                        }
+                    })
+                    //res.status(400).send(e);
                     //throw err;
-                    this.nanoskill_delete_post(req,res,next); 
+                    //this.nanoskill_delete_post(req,res,next); 
                 }//if close
                 else{
-                console.log('Macroskill updated succesfully !!' + result);
+                    console.log('Macroskill updated succesfully !!');
+                    res.send(doc);
                 } //else close
             })//update close  
         } 

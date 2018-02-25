@@ -8,6 +8,7 @@ var ObjectiveQuestionSchema = new schema({
     },
     options: [{
         type: mongooseId,
+        ref : 'strimage', //added
         required: true
     }],
     correct_option: {

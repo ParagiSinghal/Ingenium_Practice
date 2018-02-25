@@ -17,6 +17,10 @@ var QuestionSchema = new schema({
         type: Boolean,
         default: false
     },
+    is_subjective :{
+        type: Boolean,
+        default : false
+    },
     question_id: { //on the basis of whether it is ojectiveQuestion or subjectiveQuestion
         type: mongooseId,
         required: true

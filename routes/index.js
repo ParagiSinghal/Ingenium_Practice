@@ -12,13 +12,19 @@ router.get('/',function(req,res){
     //if(err)
     //    throw err;
     console.log('Redirecting');
-    res.redirect('/catalog');
+    //res.redirect('/catalog');
    // res.render()
     /*res.redirect('/catalog').then(()=>{
         console.log('Redirected!!');
     },(e)=>{
         console.log("Can't be redirected!!");
     });*/
+    console.log("Rendering index");
+    res.render('index');
+});
+router.get('/signup', function() {
+    console.log("signing up");
+    res.render(signup);
 });
 
 module.exports = router;
