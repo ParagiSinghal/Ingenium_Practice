@@ -15,8 +15,8 @@ module.exports = function(app, passport) {
 
         // render the page and pass in any flash data if it exists
         console.log('Inside get login function');
-        //res.render('login', { message: req.flash('loginMessage') });
-        res.render('login');
+        res.render('login', { message: req.flash('loginMessage') });
+        //res.render('login');
     });
 
     // process the login form
@@ -34,10 +34,10 @@ module.exports = function(app, passport) {
 	app.get('/signup', function(req, res) {
 
         // render the page and pass in any flash data if it exists
-        //consol.log('Inside the signup function');
-         //res.render('signup', { message: req.flash('signupMessage')});
+        console.log('Inside the signup function');
+        res.render('signup',{ message: req.flash('signupMessage')});
         //res.send(err);
-        res.render('signup');
+        //res.render('signup');
         //console.log(err);
 	});
 
@@ -45,7 +45,7 @@ module.exports = function(app, passport) {
 	app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        //failureFlash : true // allow flash messages
+        failureFlash : true // allow flash messages
 	}));
 
     // =====================================

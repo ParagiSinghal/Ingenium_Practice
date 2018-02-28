@@ -8,15 +8,6 @@ var userSchema = mongoose.Schema({
         email        : String,
         password     : String,
     },
-    //Designation: {type: String,required:true},
-    //Insitute: String,
-    //Age: Number,
-    // google : {
-    //     id           : String,
-    //     token        : String,
-    //     email        : String,
-    //     name         : String
-    // }
 });
 
 // methods ======================

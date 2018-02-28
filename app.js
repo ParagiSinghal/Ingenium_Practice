@@ -3,7 +3,6 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var engines = require('consolidate'); //Added
 var passport = require('passport');
-var session = require('express-session');
 var flash = require('connect-flash');
 var mongoose = require('mongoose');
 var expressValidator = require('express-validator');
@@ -20,9 +19,9 @@ require('./configuration/passport')(passport);
 
 //var index = require('./routes/index');
 
-//var catalog = require('./routes/catalog');
+var catalog = require('./routes/catalog');
 //var users = require('./routes/users')(app,passport);
-require('./routes/users')(app,passport);
+//require('./routes/users')(app,passport);
 
 // view engine setup
 app.engine('html',engines.nunjucks)
@@ -51,25 +50,19 @@ app.use(session({
 //Passport init
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-
-app.use(expressValidator()); // Add this after the bodyParser middlewares!
-
 //Connect-flash
 app.use(flash()); // use connect-flash for flash messages stored in session
-//console.log('lets start');
-//EDITED BY SIR 
-/*app.use('/signup', (req, res) => {
-  console.log('singup');
-  res.render('signup');
-});*/
-/*app.use('/login', (req, res) => {
-  console.log('login');
-  res.render('login');
-})*/
+require('./routes/users')(app,passport);
+app.use(expressValidator()); // Add this after the bodyParser middlewares!
+
 //app.use('/',users); //commented by me 
 //app.use('/users', users);
-//app.use('/catalog',catalog); //adding middle-ware for all requests specific to this path
+app.use('/catalog',catalog); //adding middle-ware for all requests specific to this path
 //require('./routes/users')(app, passport);
+
+// app.use(function(err, req, res, next) {
+//   console.log(err);
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

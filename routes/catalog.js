@@ -141,31 +141,6 @@ router.get('/', question_controller.question_list);
 
 
 
-/* GET request for creating a strimage. NOTE This must come before routes that display strimage (uses id) */
-router.get('/strimage/:question_id/create', strimage_controller.strimage_create_get);
-
-/* POST request for creating strimage. */
-router.post('/strimage/:question_id/create', strimage_controller.strimage_create_post);
-
-/* GET request to delete strimage. */
-router.get('/strimage/:id/delete', strimage_controller.strimage_delete_get);
-
-// POST request to delete strimage
-router.post('/strimage/:id/delete', strimage_controller.strimage_delete_post);
-
-/* GET request to update strimage. */
-router.get('/strimage/:id/update', strimage_controller.strimage_update_get);
-
-// POST request to update strimage
-router.post('/strimage/:id/update', strimage_controller.strimage_update_post);
-
-/* GET request for one strimage. */
-router.get('/:id', strimage_controller.strimage_detail);
-
-/* GET request for list of all strimage items. */
-router.get('/strimage/list', strimage_controller.strimage_list);
-
-
 
 /* GET request for creating a macroskill. NOTE This must come before routes that display macroskill (uses id) */
 router.get('/macroskill/create', macroskill_controller.macroskill_create_get);
@@ -194,6 +169,7 @@ router.get('/macroskill/list', macroskill_controller.macroskill_list);
 
 
 
+
 /* GET request for creating a nanoskill. NOTE This must come before routes that display nanoskill (uses id) */
 router.get('/nanoskill/:macro_id/create', nanoskill_controller.nanoskill_create_get);
 
@@ -217,5 +193,33 @@ router.get('/:id', nanoskill_controller.nanoskill_detail);
 
 /* GET request for list of all nanoskill items. */
 router.get('/nanoskill/list', nanoskill_controller.nanoskill_list);
+
+
+
+
+// /* GET request for creating a strimage. NOTE This must come before routes that display strimage (uses id) */
+// router.get('/strimage/:question_id/create', strimage_controller.strimage_create_get);
+
+// /* POST request for creating strimage. */
+// router.post('/strimage/:question_id/create', strimage_controller.strimage_create_post);
+
+// /* GET request to delete strimage. */
+// router.get('/strimage/:id/delete', strimage_controller.strimage_delete_get);
+
+// // POST request to delete strimage
+// router.post('/strimage/:id/delete', strimage_controller.strimage_delete_post);
+
+// /* GET request to update strimage. */
+// router.get('/strimage/:id/update', strimage_controller.strimage_update_get);
+
+// // POST request to update strimage
+// router.post('/strimage/:id/update', strimage_controller.strimage_update_post);
+
+// /* GET request for one strimage. */
+// router.get('/:id', strimage_controller.strimage_detail);
+
+// /* GET request for list of all strimage items. */
+// router.get('/strimage/list', strimage_controller.strimage_list);
+
 
 module.exports = router;
