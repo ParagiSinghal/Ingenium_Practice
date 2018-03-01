@@ -16,10 +16,11 @@ var app = express();
 var db = require('./connection');
 
 require('./configuration/passport')(passport);
+//var uploadImages = require('./routes/uploadImages');
 
 //var index = require('./routes/index');
 
-var catalog = require('./routes/catalog');
+//var catalog = require('./routes/catalog');
 //var users = require('./routes/users')(app,passport);
 //require('./routes/users')(app,passport);
 
@@ -54,11 +55,12 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 require('./routes/users')(app,passport);
 app.use(expressValidator()); // Add this after the bodyParser middlewares!
+require('./routes/uploadImages')(app);
+var catalog = require('./routes/catalog');
 
-//app.use('/',users); //commented by me 
+//app.use('/',users); 
 //app.use('/users', users);
 app.use('/catalog',catalog); //adding middle-ware for all requests specific to this path
-//require('./routes/users')(app, passport);
 
 // app.use(function(err, req, res, next) {
 //   console.log(err);

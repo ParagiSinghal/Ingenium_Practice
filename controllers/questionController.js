@@ -24,41 +24,24 @@ exports.question_create_get = function(req,res,next){
 
 
 exports.question_create_post = function(req,res,next){
-    console.log("Inside question create post method");
-    // var desc = new strimage({
-    //     content : req.body.desc_content,
-    //     image_url : req.body.desc_image_url
-    // });
-    // desc.save(function(e,doc){
-    //     if(e){
-    //         console.log("Question description saved succesfully !");
-    //         //throw e;
-    //     }
-    //     else{
-    //         console.log("Question description could not be saved");
-    //     } 
-    // });
-    req.text = req.body.desc_content,
-    req.image_url = req.body.desc_image_url
-    var desc = strimageController.strimage_create_post(req,res,next);
-    req.text = req.body.ques_content,
-    req.image_url = req.body.ques_image_url
-    var ques = strimageController.strimage_create_post(req,res,next);
-    //Save description object to strimage database
-    // var ques = new strimage({
-    //     content : req.body.ques_content,
-    //     image_url : req.body.ques_image_url
-    // });
-    // //Save ques instance to striamge database
-    // ques.save(function(e,doc){
-    //     if(e){
-    //         console.log("Question saved succesfully !");
-    //         //throw e;
-    //     }
-    //     else{
-    //         console.log("Question could not be saved");
-    //     } 
-    // });
+    var desc = new strimage({
+        content: req.body.desc_content,
+        image_url: '/public/' + req.body.desc_image_url
+    });
+    desc.save().then((doc) => {
+        console.log('strimage stored', doc);
+    }, (err) => {
+        console.log(err);
+    });
+    var ques = new strimage({
+        content: req.body.ques_content,
+        image_url: '/public/' + req.body.desc_ques_url
+    });
+    desc.save().then((doc) => {
+        console.log('strimage stored', doc);
+    }, (err) => {
+        console.log(err);
+    });
     var question_instance = new questions({
         description : desc._id,
         is_comprehension : req.body.is_comprehension,
@@ -80,10 +63,10 @@ exports.question_create_post = function(req,res,next){
         }
         else{
             res.send(doc); 
-            if(is_objective == true){
-                req.params.
-                res.redirect()
-            }
+            // if(is_objective == true){
+            //     req.params.
+            //     res.redirect()
+            // }
         } 
     })
 };

@@ -23,6 +23,7 @@ var QuestionSchema = new schema({
     },
     question_id: { //on the basis of whether it is ojectiveQuestion or subjectiveQuestion
         type: mongooseId,
+        ref : 'strimage',
         required: true
     },
     level: {

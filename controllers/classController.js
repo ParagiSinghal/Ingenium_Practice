@@ -20,12 +20,12 @@ exports.class_list = function(req,res,next){
 };
 
 exports.class_create_get = function(req,res,next){
-    
-   
+    res.render(uploadFile);
 };
 
 
 exports.class_create_post = function(req,res,next){
+    console.log("Inside class create post method");
     var classes_instance = new classes({
         name: req.body.name,
         subjects : []

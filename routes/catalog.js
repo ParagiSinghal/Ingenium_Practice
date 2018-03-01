@@ -1,5 +1,4 @@
 var express = require('express')
-
 var router = express.Router();
 
 var class_controller = require('../controllers/classController');
@@ -9,6 +8,7 @@ var question_controller = require('../controllers/questionController');
 var strimage_controller = require('../controllers/strimageController');
 var macroskill_controller = require('../controllers/macroskillController');
 var nanoskill_controller = require('../controllers/nanoskillController');
+var image_controller = require('../controllers/imageController');
 
 //router.get('/',nanoskill_controller.index);
 
@@ -89,29 +89,43 @@ router.get('/:id', chapter_controller.chapter_detail);
 router.get('/chapter/list', chapter_controller.chapter_list);
 
 
-/* GET request for creating a nanoskill. NOTE This must come before routes that display nanoskill (uses id) */
+
+
+/* GET request for creating a question. NOTE This must come before routes that display nanoskill (uses id) */
 router.get('/question/:class_id/:subject_id/:chapter_id/create', question_controller.question_create_get);
 
-/* POST request for creating nanoskill. */
+/* POST request for creating question. */
 router.post('/question/:class_id/:subject_id/:chapter_id/create', question_controller.question_create_post);
 
-/* GET request to delete nanoskill. */
+/* GET request to delete question. */
 router.get('/question/:id/delete', question_controller.question_delete_get);
 
-// POST request to delete nanoskill
+// POST request to delete question
 router.post('/question/:id/delete', question_controller.question_delete_post);
 
-/* GET request to update nanoskill. */
+/* GET request to update question. */
 router.get('/question/:id/update', question_controller.question_update_get);
 
-// POST request to update nanoskill
+// POST request to update question
 router.post('/question/:id/update', question_controller.question_update_post);
 
-/* GET request for one subject. */
+/* GET request for one question. */
 router.get('/:id', question_controller.question_detail);
 
-/* GET request for list of all nanoskill items. */
+/* GET request for list of all question items. */
 router.get('/', question_controller.question_list);
+
+/*POST request to upload images . */
+// router.post('/question/upload',uploadImages.upload_multiple_images); 
+
+
+//Image controller route functions
+
+router.get('/upload',image_controller.image_upload_get);
+
+router.post('/upload',image_controller.image_upload_post);
+
+router.get('all_images',image_controller.all_images);
 
 //OBJECTIVE QUESTION
 

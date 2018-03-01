@@ -34,7 +34,7 @@ exports.strimage_create_post = function(req,res,next){
             });
             stringImage.save().then((doc) => {
                 console.log('strimage stored', doc);
-                return stringImage._id; //Added
+                //return stringImage._id; //Added
             }, (err) => {
                 console.log(err);
             });
